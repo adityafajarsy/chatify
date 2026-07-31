@@ -4,7 +4,8 @@ import { ENV } from "./env.js";
 const connectDB = async () => {
   try {
     if (!ENV.MONGO_URI) {
-      throw new Error("MONGO_URI not found in .env file");
+      console.error("❌ ERROR: MONGO_URI is not set in Environment Variables!");
+      process.exit(1);
     }
 
     const conn = await mongoose.connect(ENV.MONGO_URI);
